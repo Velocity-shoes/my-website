@@ -1,0 +1,126 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ShoppingCart } from "lucide-react";
+
+const shoes = [
+  {
+    name: "Velocity Apex",
+    price: "$139",
+    description: "Elite performance shoe built for explosive vertical jumps and maximum grip.",
+  },
+  {
+    name: "Velocity Swift",
+    price: "$119",
+    description: "Ultra‑lightweight design made for speed and fast directional changes.",
+  },
+  {
+    name: "Velocity Control",
+    price: "$129",
+    description: "Stability-focused cushioning for confident landings and long matches.",
+  },
+];
+
+export default function Website() {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Navbar */}
+      <nav className="flex justify-between items-center px-8 py-5 border-b border-white/10">
+        <div className="flex items-center gap-3">
+          {/* Upload your logo file as /public/logo.png */}
+          <img src="/logo.png" alt="Velocity Logo" className="h-8 w-auto" />
+          <h1 className="text-xl font-bold tracking-widest">VELOCITY</h1>
+        </div>
+        <div className="space-x-6 text-sm uppercase tracking-wide">
+          <a href="#home" className="hover:text-gray-300">Home</a>
+          <a href="#shop" className="hover:text-gray-300">Shop</a>
+          <a href="#about" className="hover:text-gray-300">About</a>
+          <a href="#contact" className="hover:text-gray-300">Contact</a>
+          <ShoppingCart className="inline" size={18} />
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section
+        id="home"
+        className="flex flex-col items-center justify-center text-center px-6 py-32 bg-gradient-to-b from-black via-gray-950 to-black"
+      >
+        <motion.img
+          src="/logo.png"
+          alt="Velocity Logo"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="h-24 mb-8"
+        />
+
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight"
+        >
+          BUILT FOR HEIGHT.
+        </motion.h2>
+        <p className="max-w-xl text-lg text-gray-400 mb-10">
+          Velocity volleyball shoes are engineered for athletes who move faster, jump higher, and dominate every rally.
+        </p>
+        <Button size="lg" className="bg-white text-black hover:bg-gray-200">
+          Shop Collection
+        </Button>
+      </section>
+
+      {/* Shop Section */}
+      <section id="shop" className="px-6 py-20 bg-black">
+        <h3 className="text-3xl font-semibold mb-12 text-center tracking-wide">
+          Featured Shoes
+        </h3>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {shoes.map((shoe, i) => (
+            <motion.div
+              key={shoe.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
+            >
+              <Card className="rounded-2xl bg-gray-950 border border-white/10 hover:border-white/30 transition">
+                <CardContent className="p-8 text-center">
+                  <div className="h-40 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl mb-6 flex items-center justify-center text-gray-500">
+                    Shoe Image
+                  </div>
+                  <h4 className="text-xl font-semibold mb-2">{shoe.name}</h4>
+                  <p className="text-gray-400 mb-4">{shoe.description}</p>
+                  <p className="font-bold text-lg mb-4">{shoe.price}</p>
+                  <Button className="w-full bg-white text-black hover:bg-gray-200">
+                    Add to Cart
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="px-6 py-20 max-w-4xl mx-auto text-center">
+        <h3 className="text-3xl font-semibold mb-6 tracking-wide">About Velocity</h3>
+        <p className="text-gray-400 leading-relaxed">
+          Velocity is a performance-driven volleyball brand focused on speed, elevation, and control. Every shoe is designed with modern athletes in mind — combining advanced cushioning, lightweight materials, and aggressive traction for peak performance.
+        </p>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="px-6 py-24 text-center border-t border-white/10">
+        <h3 className="text-3xl font-semibold mb-6">Contact</h3>
+        <p className="text-gray-400 mb-6">support@velocitysports.com</p>
+        <Button className="bg-white text-black hover:bg-gray-200">Contact Support</Button>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-8 text-sm text-gray-500 border-t border-white/10">
+        © {new Date().getFullYear()} Velocity. All rights reserved.
+      </footer>
+    </div>
+  );
+}
